@@ -1,0 +1,16 @@
+---
+name: Huginn
+category: Support
+fits:
+  - name: Huginn
+    description: default Huginn fit
+    doctrine: GOA
+    group: ""
+    implants: ""
+    fit_dna: "fitting:11961:2605;1:2048;1:1541;2:35660;1:17559;1:19806;1:3841;2:2281;1:2913;4:1877;1:31790;2:2205;2:2175;3:12773;1480:2613;620:12777;1000:27387;600:28668;100:21896;1000::"
+skills: |
+  Huginn:
+    <<: [*logiarmor]
+    Afterburner:
+      min: 4
+

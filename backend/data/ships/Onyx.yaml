@@ -1,0 +1,41 @@
+---
+name: Onyx
+category: Support
+fits:
+  - name: Onyx
+    description: default Onyx fit
+    doctrine: GOA
+    group: ""
+    implants: ""
+    fit_dna: "fitting:11995:1236;2:2048;1:2605;1:19265;1:35660;1:3841;2:41218;1:2281;1:37611;4:13001;2:31724;1:31378;1:45010;5:29003;5::"
+skills: |
+  Onyx:
+    <<: [*logiarmor]
+    Afterburner:
+      min: 4
+    Capacitor Emission Systems:
+      min: 5
+    Evasive Maneuvering:
+      min: 3
+    Fuel Conservation:
+      min: 4
+    Logistics Cruisers:
+      min: 5
+    Radar Sensor Compensation:
+      elite: 4
+    Amarr Cruiser:
+      min: 5
+    Light Drone Operation:
+      min: 1
+      elite: 5
+    Medium Drone Operation:
+      min: 1
+      elite: 5
+    CPU Management:
+      min: 5
+    Power Grid Management:
+      min: 5
+    Energy Grid Upgrades:
+      min: 5
+    Cybernetics:
+      min: 5

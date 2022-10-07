@@ -1,0 +1,55 @@
+---
+name: Nestor
+category: Logi
+fits:
+  - name: Nestor
+    description: default Nestor fit
+    doctrine: "BELUGA"
+    group: ""
+    implants: ""
+    fit_dna: "fitting:33472:31900;2:18789;3:4403;1:19353;1:14174;1:41218;2:14140;1:14236;1:16449;6:41478;1:26298;3:2478;5:23707;5:2446;5:23705;5:2488;10:2436;5:41490;8:28668;64:41155;3:29011;3:29009;3::"
+skills: |
+  Nestor:
+    <<: [*logiarmor, *riggingarmor]
+    EM Armor Compensation:
+      min: 5
+    Explosive Armor Compensation:
+      min: 5
+    Thermal Armor Compensation:
+      min: 5
+    Kinetic Armor Compensation:
+      min: 5
+    Advanced Target Management:
+      min: 5
+    Amarr Battleship:
+      min: 5
+    Gallente Battleship:
+      min: 3
+      elite: 4
+    High Speed Maneuvering:
+      min: 4
+    Magnetometric Sensor Compensation:
+      elite: 4
+    Repair Drone Operation:
+      min: 3
+      elite: 5
+    Drone Durability:
+      min: 1
+    Shield Emission Systems:
+      min: 3
+      gold: 4
+    Remote Hull Repair Systems:
+      min: 3
+      gold: 4
+    Heavy Drone Operation:
+      min: 1
+      elite: 5
+    Cybernetics:
+      min: 5
+    Astronautics Rigging:
+      gold: 5
+    Thermodynamics:
+      min: 4
+      elite: 5
+    Drones:
+      min: 5

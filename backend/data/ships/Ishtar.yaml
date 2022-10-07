@@ -1,5 +1,6 @@
 ---
 name: Ishtar
+active: 1
 category: DPS
 fits:
   - name: ISHTAR
@@ -10,7 +11,7 @@ fits:
     fit_dna: "fitting:12005:47257;1:4405;3:2605;1:1236;1:5975;1:3841;2:2281;1:24427;2:8787;1:31724;1:31790;1:2446;5:2195;5:28209;4:2488;5:28668;200:185;1100::"
 skills: |
   Ishtar:
-    <<: [*generic, *riggingshield, *dronedps, *sideeffects]
+    <<: [*generic_shield, *rigging_shield, *drone_dps, *side_effects]
     Heavy Assault Cruisers:
       min: 3
       elite: 4

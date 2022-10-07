@@ -1,5 +1,6 @@
 ---
 name: Leshak
+active: 1
 category: DPS
 fits:
   - name: Leshak
@@ -10,6 +11,27 @@ fits:
     fit_dna: "fitting:47271:4403;1:2048;1:47911;1:18867;1:15729;1:18959;1:20353;2:35661;1:5051;1:5320;1:448;1:16451;3:47923;1:21538;1:25736;1:25892;1:25894;1:47934;2561:47935;1930:41490;9:47932;1000:47933;1484::"
 skills: |
   Leshak:
-    Afterburner:
+    <<: [*generic_armor, *gunnery, *side_effects, *drone_dps]
+    Precursor Battleship:
+      min: 3
+      elite: 4
+      gold: 5
+    Large Disintegrator Specialization:
+      min: 3
+      elite: 4
+      gold: 5
+    Remote Armor Repair Systems:
       min: 4
-
+    # Utility slots
+    Weapon Disruption:
+      min: 2
+      elite: 4
+    Electronic Warfare:
+      min: 4
+    Sensor Linking:
+      min: 2
+      elite: 4
+    Propulsion Jamming: # web
+      min: 4
+    Evasive Maneuvering: #grappler
+      min: 4

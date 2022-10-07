@@ -113,8 +113,27 @@ categories:
     - Skirmish Command Specialist
     - Information Command
     - Information Command Specialist
+  Unsort:
+    - Electronics Upgrades
+    - Target Painting
+    - Recon Ships
+    - Small Projectile Turret
+    - Medium Projectile Turret
+    - Medium Autocannon Specialization
+    - Electronics Upgrades
+    - Cloaking
+    - Minmatar Cruiser
+    - Minmatar Battlecruiser
+    - Shield Command
+    - Light Missile Specialization
+    - Shield Command Specialist
+    - Weapon Disruption
+    - Precursor Battleship
+    - Large Disintegrator Specialization
   
 requirements:
+  _none: &none
+
   _generic: &generic
     Hull Upgrades:
       min: 5
@@ -180,8 +199,54 @@ requirements:
     Shield Operation:
       elite: 4
 
-  _genericarmor: &genericarmor
-    <<: [*generic]
+  _rigging_armor: &rigging_armor
+    Armor Rigging:
+      min: 3
+      Elite: 4
+    Astronautics Rigging:
+      min: 3
+      Elite: 4
+
+  _rigging_shield: &rigging_shield
+    Shield Rigging:
+      min: 3
+      Elite: 4
+    Astronautics Rigging:
+      min: 3
+      Elite: 4
+
+  _side_effects: &side_effects
+    Neurotoxin Control:
+      elite: 4
+    Neurotoxin Recovery:
+      elite: 4
+
+  _gunnery: &gunnery
+    Controlled Bursts:
+      min: 3
+      elite: 4
+    Motion Prediction:
+      min: 5
+    Rapid Firing:
+      min: 3
+      elite: 5
+      priority: 2
+    Sharpshooter:
+      min: 3
+      elite: 5
+    Surgical Strike:
+      min: 3
+      elite: 5
+      priority: 2
+    Trajectory Analysis:
+      min: 4
+      elite: 4
+    Weapon Upgrades:
+      min: 4
+      elite: 5
+
+  _generic_armor: &generic_armor
+    <<: [*generic, *rigging_armor]
     EM Armor Compensation:
       min: 4
       elite: 5
@@ -197,6 +262,34 @@ requirements:
     Armor Layering:
       min: 3
       elite: 4
+
+  _generic_shield: &generic_shield
+    <<: [*generic, *rigging_shield]
+    Shield Management:
+      min: 3
+      elite: 4
+    Shield Operation:
+      min: 4
+    EM Shield Compensation :
+      min: 3
+      elite: 4
+    Explosive Shield Compensation :
+      min: 3
+      elite: 4
+    Kinetic Shield Compensation:
+      min: 3
+      elite: 4
+    Thermal Shield Compensation:
+      min: 3
+      elite: 4
+    Tactical Shield Manipulation:
+      min: 3
+      elite: 4
+    Shield Compensation:
+      min: 3
+      elite: 4
+    Shield Upgrades:
+      min: 4
 
   _booster: &booster
     EM Armor Compensation:
@@ -274,37 +367,7 @@ requirements:
     Shield Operation:
       elite: 4
 
-  _sideeffects: &sideeffects
-    Neurotoxin Control:
-      elite: 4
-    Neurotoxin Recovery:
-      elite: 4
-
-  _gunnery: &gunnery
-    Controlled Bursts:
-      min: 3
-      elite: 4
-    Motion Prediction:
-      min: 5
-    Rapid Firing:
-      min: 3
-      elite: 5
-      priority: 2
-    Sharpshooter:
-      min: 3
-      elite: 5
-    Surgical Strike:
-      min: 3
-      elite: 5
-      priority: 2
-    Trajectory Analysis:
-      min: 4
-      elite: 4
-    Weapon Upgrades:
-      min: 4
-      elite: 5
-
-  _dronedps: &dronedps
+  _drone_dps: &drone_dps
     Drones:
       min: 5
     Drone Durability:
@@ -340,7 +403,7 @@ requirements:
       min: 1
       elite: 4
 
-  _logibase: &logibase
+  _logi_base: &logi_base
     Hull Upgrades:
       min: 5
     Mechanics:
@@ -394,23 +457,8 @@ requirements:
       min: 3
       elite: 5
 
-  _logiarmor: &logiarmor
-    <<: [*logibase]
-    EM Armor Compensation:
-      min: 4
-      elite: 5
-    Explosive Armor Compensation:
-      min: 4
-      elite: 5
-    Thermal Armor Compensation:
-      min: 4
-      elite: 5
-    Kinetic Armor Compensation:
-      min: 4
-      elite: 5
-    Armor Layering:
-      min: 3
-      elite: 4
+  _logi_armor: &logi_armor
+    <<: [*logi_base]
     Remote Armor Repair Systems:
       min: 5
     Repair Systems:
@@ -421,8 +469,8 @@ requirements:
     Shield Operation:
       elite: 4
 
-  _logishield: &logishield
-    <<: [*logibase]
+  _logi_shield: &logi_shield
+    <<: [*logi_base]
     Shield Management:
       min: 3
       elite: 4
@@ -448,19 +496,3 @@ requirements:
       elite: 4
     Shield Upgrades:
       min: 4
-
-  _riggingarmor: &riggingarmor
-    Armor Rigging:
-      min: 3
-      Elite: 4
-    Astronautics Rigging:
-      min: 3
-      Elite: 4
-
-  _riggingshield: &riggingshield
-    Shield Rigging:
-      min: 3
-      Elite: 4
-    Astronautics Rigging:
-      min: 3
-      Elite: 4

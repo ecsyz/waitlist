@@ -1,5 +1,6 @@
 ---
 name: Scimitar
+active: 1
 category: Logi
 fits:
   - name: SCIMITAR
@@ -10,6 +11,12 @@ fits:
     fit_dna: "fitting:11978:1447;3:2048;1:35660;1:3841;2:2281;2:8641;2:8583;2:31378;1:31790;1:2488;5::"
 skills: |
   Scimitar:
-    <<: [*logishield]
+    <<: [*logi_shield]
     Afterburner:
+      min: 4
+    Logistics Cruisers:
+      min: 4
+    Minmatar Cruiser:
+      min: 5
+    Shield Emission Systems:
       min: 4

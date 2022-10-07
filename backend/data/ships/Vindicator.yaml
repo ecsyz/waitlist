@@ -1,0 +1,37 @@
+---
+name: Vindicator
+active: 0
+category: DPS
+fits:
+  - name: Vindicator
+    description: default Vindicator fit
+    doctrine: BELUGA
+    group: ""
+    implants: ""
+    fit_dna: ""
+skills: |
+  Vindicator:
+    <<: [*generic_armor, *gunnery, *side_effects]
+    Large Hybrid Turret:
+      min: 5
+    Large Blaster Specialization:
+      elite: 4
+      priority: 10
+    Gallente Battleship:
+      min: 3
+      elite: 4
+    Minmatar Battleship:
+      min: 3
+      elite: 5
+      priority: 5
+    Heavy Drone Operation:
+      min: 3
+      elite: 5
+    Propulsion Jamming:
+      min: 1
+      elite: 4
+    Magnetometric Sensor Compensation:
+      elite: 4
+    Micro Jump Drive Operation:
+      min: 3
+      elite: 4

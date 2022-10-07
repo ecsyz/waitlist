@@ -1,5 +1,6 @@
 ---
 name: Huginn
+active: 1
 category: Support
 fits:
   - name: Huginn
@@ -7,10 +8,21 @@ fits:
     doctrine: GOA
     group: ""
     implants: ""
-    fit_dna: "fitting:11961:2605;1:2048;1:1541;2:35660;1:17559;1:19806;1:3841;2:2281;1:2913;4:1877;1:31790;2:2205;2:2175;3:12773;1480:2613;620:12777;1000:27387;600:28668;100:21896;1000::"
+    fit_dna: "fitting:11961:2048;1:1541;2:2605;1:3841;2:2281;1:19339;1:17559;1:31944;1:24427;2:23527;1:2913;1:28758;1:31790;2:2205;8:30488;24:28668;200:21896;1520::"
 skills: |
   Huginn:
-    <<: [*logiarmor]
-    Afterburner:
+    <<: [*drone_dps]
+    Minmatar Cruiser:
+      min: 5
+    Recon Ships:
+      min: 5
+    Cloaking:
       min: 4
-
+    Electronics Upgrades:
+      min: 5
+    Target Painting:
+      min: 4
+    Medium Projectile Turret:
+      min: 5
+    Medium Autocannon Specialization:
+      min: 1

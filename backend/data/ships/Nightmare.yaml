@@ -1,0 +1,52 @@
+---
+name: Nightmare
+active: 0
+category: DPS
+fits:
+  - name: Nightmare
+    description: default Nightmare fit
+    doctrine: BELUGA
+    group: ""
+    implants: ""
+    fit_dna: ""
+skills: |
+    Nightmare:
+    <<: [*generic_shield, *gunnery, *side_effects]
+    Amarr Battleship:
+      min: 3
+      elite: 4
+    Caldari Battleship:
+      min: 1
+      gold: 1
+    Capacitor Emission Systems:
+      min: 3
+      elite: 4
+    Large Energy Turret:
+      min: 5
+    Large Pulse Laser Specialization:
+      elite: 4
+    Remote Armor Repair Systems:
+      min: 3
+      elite: 4
+    Repair Systems:
+      min: 2
+      gold: 2
+    Micro Jump Drive Operation:
+      min: 3
+      elite: 4
+    Light Drone Operation:
+      min: 3
+      elite: 4
+    Medium Drone Operation:
+      min: 3
+      elite: 4
+    Heavy Drone Operation:
+      min: 3
+      elite: 4
+    Science:
+      min: 3
+      elite: 5
+    Radar Sensor Compensation:
+      elite: 4
+    Energy Grid Upgrades:
+      min: 2

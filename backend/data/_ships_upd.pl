@@ -20,47 +20,101 @@ our $data = {
 };
 my $yaml_skills_raw = file_read('_skills.yaml');
 
-
-
-opendir(my $dh, $pwd.'/ships') || die "Can't read dir: $!";
-while (readdir $dh) {
-    next unless $_ =~ /\.yaml$/;
-    # next unless $_ =~ /Curse/i;
-    
-    my $y = yaml_read($pwd.'/ships/'.$_);
-    $y->{path} = $pwd.'/ships/'.$_;
-    $y->{file} = $_;
-
-    if(exists $data->{ships}->{$y->{name}}) {
-        printf("Setting for ship '%s' already exists.\nCurrent file: '%s'\nPredidushiy fail: '%s'\n", $y->{name}, $y->{path}, $data->{ships}->{$y->{name}}->{path});
-        exit;
+if(defined $ARGV[0] && scalar(@ARGV) > 0){
+    if($ARGV[0] eq 'check'){
+        check_all_yaml();
     }
-
-    unless($y->{category} ~~ @{$data->{categories}}){
-        printf(
-            "Not correct category '%s' for ship '%s' in file '%s'\n", 
-            $y->{category},
-            $y->{name},
-            $y->{path}
-        );
-        exit;
-    }
-    
-    foreach my $fit(@{$y->{fits}}){
-        $fit->{fit_name} = fit_name($fit);
-    }
-
-    $data->{ships}->{$y->{name}} = $y;
+} else {
+    read_ships();               # <- ships/*.yaml
+    build_frontend_skillshow(); # -> frontend/src/Components/SkillDisplay.js
+    build_skills_yaml();        # -> backend/data/skills.yaml
+    build_categories_yaml();    # -> backend/data/categories.yaml
+    build_fits_dat();           # -> backend/data/fits.dat
+    check_all_yaml();
 }
-closedir $dh;
 
-# print Dumper($data);
+sub read_ships(){
+    opendir(my $dh, $pwd.'/ships') || die "Can't read dir: $!";
+    while (readdir $dh) {
+        next unless $_ =~ /\.yaml$/;
+        
+        my $y = yaml_read($pwd.'/ships/'.$_);
 
-build_frontend_skillshow(); # -> frontend/src/Components/SkillDisplay.js
-build_skills_yaml();        # -> backend/data/skills.yaml
-build_categories_yaml();    # -> backend/data/categories.yaml
-build_fits_dat();           # -> backend/data/fits.dat
+        next if $y->{active} == 0;
 
+        $y->{path} = 'ships/'.$_;
+        $y->{file} = $_;
+
+        if(exists $data->{ships}->{$y->{name}}) {
+            printf("Setting for ship '%s' already exists.\nCurrent file: '%s'\nPredidushiy fail: '%s'\n", $y->{name}, $y->{path}, $data->{ships}->{$y->{name}}->{path});
+            exit;
+        }
+
+        unless($y->{category} ~~ @{$data->{categories}}){
+            printf(
+                "Not correct category '%s' for ship '%s' in file '%s'\n", 
+                $y->{category},
+                $y->{name},
+                $y->{path}
+            );
+            exit;
+        }
+        
+        foreach my $fit(@{$y->{fits}}){
+            $fit->{fit_name} = fit_name($fit);
+        }
+
+        $data->{ships}->{$y->{name}} = $y;
+    }
+    closedir $dh;
+}
+
+sub check_all_yaml(){
+    my $list = [
+        # /backend/data/
+        '_skills.yaml',
+        'skills.yaml',
+        'categories.yaml',
+        'fitnotes.yaml',
+        'modules.yaml',
+        'skillplan.yaml',
+        'tags.yaml',
+    ];
+
+    
+    say '===================================';
+    say '==  Check YAML Configs           ==';
+    say '===================================';
+    say 'Global:';
+    say '';
+    foreach my $fn(@$list){
+        eval { yaml_read($fn) };
+        $@ ?
+            printf("[ %20.20s ]: ERROR\n\tNot correct skills data.\n\tErrMsg: %s\n", $fn, $@):
+            printf("[ %20.20s ]: OK\n", $fn);
+    }
+
+    say '';
+    say 'Ships section:';
+    say '';
+
+    opendir(my $dh, 'ships') || die "Can't read dir: $!";
+    while (readdir $dh) {
+        my $fn = 'ships/'.$_;
+        next unless $fn =~ /\.yaml$/;
+
+        eval {
+            my $s = yaml_read($fn);
+            $s->{skills} =~ s/\n/\n  /g;
+            $s->{skills} = '  '.$s->{skills};
+            Load($yaml_skills_raw . $s->{skills});
+        };
+        $@ ?
+            printf("[ %20.20s ]: ERROR\n\tNot correct skills data.\n\tErrMsg: %s\n", $fn, $@):
+            printf("[ %20.20s ]: OK\n", $fn);
+    }
+    close($dh);
+}
 
 sub build_frontend_skillshow(){
     # Format:
@@ -97,11 +151,11 @@ sub build_frontend_skillshow(){
 
     # frontend/src/Components/SkillDisplay.js
     # <InputGroup> ... </InputGroup>
-    my $SkillDisplay_js = file_read($pwd.'../../frontend/src/Components/SkillDisplay.js');
+    my $SkillDisplay_js = file_read('../../frontend/src/Components/SkillDisplay.js');
     
     $SkillDisplay_js =~ s/\<InputGroup\>.*\<\/InputGroup\>/$html/s;
 
-    file_write($pwd.'../../frontend/src/Components/SkillDisplay.js', $SkillDisplay_js);
+    file_write('../../frontend/src/Components/SkillDisplay.js', $SkillDisplay_js);
 }
 
 sub build_skills_yaml(){
@@ -221,7 +275,7 @@ sub file_read(){
     my $fn = shift;
     
     my $c='';
-    open(my $fh, '<', $fn) || die "Can't open file: $!";
+    open(my $fh, '<', $fn) || die "Can't open file: $fn\nMsg: $!\n";
     while(my $l = <$fh>){
         $c.=$l;
     }
@@ -234,7 +288,7 @@ sub file_write(){
     my $fn = shift;
     my $str = shift;
     
-    open(my $fh, '>', $fn) || die "Can't open file: $!";
+    open(my $fh, '>', $fn) || die "Can't open file: $fn\nMsg: $!\n";
     print $fh $str;
     close($fh);
 }

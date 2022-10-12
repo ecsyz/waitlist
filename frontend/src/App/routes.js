@@ -11,10 +11,8 @@ import { Pilot } from "../Pages/Pilot";
 import { Home } from "../Pages/Home";
 import { Legal } from "../Pages/Legal";
 import { Fits } from "../Pages/Fits";
-import { Guide, GuideIndex, BadgeIndex } from "../Pages/Guide";
 import { FCRoutes } from "../Pages/FC";
 import { AuthRoutes } from "../Pages/Auth";
-import { ISKh, ISKhCalc } from "../Pages/ISKh";
 
 function LoginRequired() {
   return <b>Login Required!</b>;
@@ -29,21 +27,6 @@ export function Routes() {
       </Route>
       <Route exact path="/legal">
         <Legal />
-      </Route>
-      <Route exact path="/guide">
-        <GuideIndex />
-      </Route>
-      <Route exact path="/badges">
-        <BadgeIndex />
-      </Route>
-      <Route exact path="/guide/:guideName">
-        <Guide />
-      </Route>
-      <Route exact path="/isk-h/calc">
-        <ISKhCalc />
-      </Route>
-      <Route exact path="/isk-h">
-        <ISKh />
       </Route>
       <Route exact path="/fits">
         <Fits />

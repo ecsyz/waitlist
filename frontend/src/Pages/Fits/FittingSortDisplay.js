@@ -1,7 +1,6 @@
 import styled from "styled-components";
 import _ from "lodash";
 import { DNADisplay } from "../../Components/FitDisplay";
-import { ImplantTable } from "./ImplantText";
 import { Box } from "../../Components/Box";
 import React from "react";
 import { Modal } from "../../Components/Modal";
@@ -11,9 +10,6 @@ import { Shield } from "../../Components/Badge";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faExclamationCircle } from "@fortawesome/free-solid-svg-icons";
 import { Markdown } from "../../Components/Markdown";
-import { BadgeDOM, BadgeModal } from "../../Components/Badge";
-import hbadge from "../Guide/badges/h.png";
-import wbadge from "../Guide/badges/w.png";
 
 export const FitCard = styled.div`
   border: solid 2px ${(props) => props.theme.colors.accent2};
@@ -90,7 +86,12 @@ const DisplayDOM = styled.div`
 function Fitout({ data, tier }) {
   var dps = [];
   var logi = [];
+  var booster = [];
+  var support = [];
+
+
   var logiid = [];
+  
   var notes = {};
   var fitnote;
   var ships;
@@ -109,6 +110,10 @@ function Fitout({ data, tier }) {
     notes[note.name] = note.description;
   });
 
+  logiid = [625, 631, 634, 33472, 11978, 11985, 11987, 11989, 32790, 42245];
+  var supportid = [632,633,17920,22452,22456,22460,22464,11995,12013,12017,12021,35781,11959,11961,11971,20125,37480,37481,37482,37483];
+  var boosterid = [22442,22444,22446,22448,22466,22468,22470,22474];
+
   ships.forEach((ship) => {
     if (
       ship.dna &&
@@ -125,25 +130,17 @@ function Fitout({ data, tier }) {
         }
         if (logiid.includes(parseInt(id))) {
           logi.push(<ShipDisplay key={ship.name} fit={ship} id={id} note={fitnote} />);
+        } else if (supportid.includes(parseInt(id))) {
+          support.push(<ShipDisplay key={ship.name} fit={ship} id={id} note={fitnote} />);
+        } else if (boosterid.includes(parseInt(id))) {
+          booster.push(<ShipDisplay key={ship.name} fit={ship} id={id} note={fitnote} />);
         } else {
           dps.push(<ShipDisplay key={ship.name} fit={ship} id={id} note={fitnote} />);
         }
       }
     }
   });
-  if (tier === "Other") {
-    return (
-      <>
-        <div>
-          <div style={{ padding: "1em 0 0.4em" }}>
-            <p>These ships are never used as main characters in fleet.</p>
-          </div>
-          <Title>Secondary Support Ships</Title>
-          <DisplayDOM>{dps}</DisplayDOM>
-        </div>
-      </>
-    );
-  } else {
+
     return (
       <>
         <div>
@@ -163,10 +160,23 @@ function Fitout({ data, tier }) {
               <DisplayDOM>{logi}</DisplayDOM>
             </>
           )}
+          <br />
+          {booster.length !== 0 && (
+            <>
+              <Title>BOOSTERS</Title>
+              <DisplayDOM>{booster}</DisplayDOM>
+            </>
+          )}
+          <br />
+          {support.length !== 0 && (
+            <>
+              <Title>SUPPORTS</Title>
+              <DisplayDOM>{support}</DisplayDOM>
+            </>
+          )}
         </div>
       </>
     );
-  }
 }
 
 function ShipDisplay({ fit, id, note }) {
@@ -190,14 +200,12 @@ function ShipDisplay({ fit, id, note }) {
               <Note variant={"danger"}>
                 <p>
                   HYBRID FIT! This fit requires at least Amulet 1 - 5. <br /> See implants above or
-                  mailing list: <b>TDF-Implant1</b>
                 </p>
               </Note>
             ) : fit.name.indexOf("ASCENDANCY") !== -1 ? (
               <Note variant={"danger"}>
                 <p>
                   ASCENDANCY FIT! This fit requires at least Ascendancy 1 - 5 & WS-618. <br /> See
-                  implants above or mailing list: <b>TDF-Implant1</b>
                 </p>
               </Note>
             ) : null}
@@ -231,51 +239,7 @@ function ShipDisplay({ fit, id, note }) {
 }
 
 function ImplantOut() {
-  return (
-    <>
-      <DisplayDOM style={{ justifyContent: "initial" }}>
-        <ImplantButton name="Ascendancy" img={wbadge} />
-        <ImplantButton name="Hybrid" img={hbadge} />
-      </DisplayDOM>
-    </>
-  );
-}
-
-function ImplantButton({ name, img }) {
-  const [modalOpen, setModalOpen] = React.useState(false);
-  return (
-    <>
-      {modalOpen ? (
-        <Modal open={true} setOpen={setModalOpen}>
-          <Box style={{ width: "100%" }}>
-            <BadgeModal style={{ width: "100%" }}>
-              <BadgeModal.Title>
-                <div>
-                  <img src={img} alt={name} style={{ width: "1.8em", marginRight: "0.5em" }} />
-                </div>
-                <Title>{name} &nbsp;</Title>
-              </BadgeModal.Title>
-            </BadgeModal>
-            <b>Only visible on waitlist X-UP. </b>
-            <br />
-            <br />
-            <ImplantTable type={name} />
-          </Box>
-        </Modal>
-      ) : null}
-
-      <BadgeDOM>
-        <a onClick={(evt) => setModalOpen(true)}>
-          <BadgeDOM.Content>
-            <BadgeDOM.Icon>
-              <img src={img} alt={name} style={{ width: "1.5em" }} />
-            </BadgeDOM.Icon>
-            {name}
-          </BadgeDOM.Content>
-        </a>
-      </BadgeDOM>
-    </>
-  );
+  return (<></>);
 }
 
 export { Fitout, ImplantOut };

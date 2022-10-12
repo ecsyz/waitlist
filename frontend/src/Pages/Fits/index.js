@@ -28,7 +28,7 @@ function FitsDisplay({ tier, setTier = null }) {
   return (
     <>
       <InfoAnnouncement id={4} />
-      <PageTitle>HQ FITS</PageTitle>
+      <PageTitle>FITS</PageTitle>
       {setTier != null && (
         <Buttons style={{ marginBottom: "0.5em" }}>
           <InputGroup>
@@ -50,11 +50,6 @@ function FitsDisplay({ tier, setTier = null }) {
               Support
             </Button>
           </InputGroup>
-          <InputGroup>
-            <Button active={tier === "Antigank"} onClick={(evt) => setTier("Antigank")}>
-              Antigank
-            </Button>
-          </InputGroup>
         </Buttons>
       )}
       <ImplantOut />
@@ -68,8 +63,6 @@ function FitsDisplay({ tier, setTier = null }) {
         <Fitout data={fitData} tier="Elite" />
       ) : tier === "Other" ? (
         <Fitout data={fitData} tier="Other" />
-      ) : tier === "Antigank" ? (
-        <Fitout data={fitData} tier="Antigank" />
       ) : null}
     </>
   );

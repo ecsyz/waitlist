@@ -1,13 +1,13 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
 import { AuthContext } from "../contexts";
-import logoImage from "./logo.png";
+import logoImage from "./logo.jpg";
 import styled from "styled-components";
 import { InputGroup, Select, NavButton, AButton } from "../Components/Form";
 import { EventNotifier } from "../Components/Event";
 import { ThemeSelect } from "../Components/ThemeSelect";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faDiscord, faTeamspeak } from "@fortawesome/free-brands-svg-icons";
+import { faDiscord } from "@fortawesome/free-brands-svg-icons";
 import { NavLinks, MobileNavButton, MobileNav } from "./Navigation";
 
 const NavBar = styled.div`
@@ -43,7 +43,7 @@ NavBar.LogoLink = styled(NavLink).attrs((props) => ({
   }
 `;
 NavBar.Logo = styled.img`
-  width: 150px;
+  width: 100px;
   filter: ${(props) => props.theme.logo.filter};
 `;
 NavBar.Menu = styled.div`
@@ -101,7 +101,7 @@ export function Menu({ onChangeCharacter, theme, setTheme, sticker, setSticker }
           <NavBar.Header>
             <MobileNavButton isOpen={isOpenMobileView} setIsOpen={setOpenMobileView} />
             <NavBar.LogoLink to="/">
-              <NavBar.Logo src={logoImage} alt="The Ditanian Fleet" />
+              <NavBar.Logo src={logoImage} alt="GOA Fleet" />
             </NavBar.LogoLink>
           </NavBar.Header>
           <NavBar.Menu>
@@ -134,10 +134,7 @@ export function Menu({ onChangeCharacter, theme, setTheme, sticker, setSticker }
                 </>
               )}
               <InputGroup fixed>
-                <AButton title="Teamspeak" href="ts3server://t-d-f.one">
-                  <FontAwesomeIcon icon={faTeamspeak} />
-                </AButton>
-                <AButton title="Discord" href="https://discord.gg/YTysdbb">
+                <AButton title="Discord" href="https://discord.gg/s4tqbmfez4">
                   <FontAwesomeIcon icon={faDiscord} />
                 </AButton>
                 <EventNotifier />

@@ -95,15 +95,11 @@ export function NavLinks({ whoami }) {
           </Links>
         </>
       )}
-      <Links exact to="/guide">
-        Guides
-      </Links>
+      {whoami && (
       <Links exact to="/fits">
         Fits
       </Links>
-      <Links exact to="/isk-h/calc">
-        ISK/h
-      </Links>
+      )}
       {whoami && whoami.access["fleet-view"] && (
         <Links exact to="/fc/fleet">
           Fleet

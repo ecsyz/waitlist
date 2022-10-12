@@ -5,8 +5,8 @@ category: Logi
 fits:
   - name: SCIMITAR
     description: default Scimitar fit
-    doctrine: GOA
-    group: ""
+    doctrine: POCH
+    group: BASIC
     implants: ""
     fit_dna: "fitting:11978:1447;3:2048;1:35660;1:3841;2:2281;2:8641;2:8583;2:31378;1:31790;1:2488;5::"
 skills: |

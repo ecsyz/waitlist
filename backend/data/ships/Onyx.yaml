@@ -5,8 +5,8 @@ category: Support
 fits:
   - name: Onyx
     description: default Onyx fit
-    doctrine: GOA
-    group: ""
+    doctrine: POCH
+    group: BASIC
     implants: ""
     fit_dna: "fitting:11995:1236;2:2048;1:2605;1:19265;1:35660;1:3841;2:41218;1:2281;1:37611;4:13001;2:31724;1:31378;1:45010;5:29003;5::"
 skills: |

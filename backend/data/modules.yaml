@@ -80,11 +80,24 @@ alternatives:
     - - Ogre II
     - - "'Augmented' Ogre"
       - Heavy Mutated Drone
+
+  - - - Imperial Navy Praetor
+    - - Praetor II
+    - - "'Augmented' Praetor"
+
+  - - - Republic Fleet Warrior
+    - - Warrior II
+    - - "'Augmented' Warrior"
+
+  - - - Caldari Navy Warden
+    - - Warden II
       
   - - - Federation Navy 1600mm Steel Plates
       - Syndicate 1600mm Steel Plates
     - - Imperial Navy 1600mm Steel Plates
     - - Large Abyssal Armor Plates
+  
+
 
 from_meta:
   # Automagically determine alternatives

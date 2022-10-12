@@ -6,7 +6,7 @@ fits:
   - name: Bhaalgorn
     description: default Bhaalgorn fit
     doctrine: GAL
-    group: ""
+    group: "ELITE"
     implants: ""
     fit_dna: "fitting:17920:4403;1:2048;1:11269;2:20353;2:11229;1:35662;1:41191;1:527;1:448;1:5051;1:12271;5:19117;2:25950;1:26368;1:25974;1:2456;5:23707;5:28209;4:41490;9:28668;400:41155;1:29011;1::"
 skills: |

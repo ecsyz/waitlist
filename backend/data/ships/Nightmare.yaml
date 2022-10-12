@@ -6,7 +6,7 @@ fits:
   - name: Nightmare
     description: default Nightmare fit
     doctrine: BELUGA
-    group: ""
+    group: "ELITE"
     implants: ""
     fit_dna: ""
 skills: |

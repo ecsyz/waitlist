@@ -1,4 +1,5 @@
 #!/usr/bin/perl
+
 use strict;
 # use warnings;
 use experimental 'smartmatch';
@@ -14,8 +15,10 @@ $|++;
 
 my $pwd = $FindBin::Bin;
 
+# categories как и всё остальное жёстко зашито в код - лучше ничего не удалять.
+# Пример: фиты из группы Starter падают с припиской category=starter, в то время как все другие фиты идут в свою категорию, те category=dps, category=logi, ...
 our $data = {
-    "categories" => ["Logi", "Booster", "DPS", "Support", "Bastion"],
+    "categories" => ["Logi", "Booster", "DPS", "Support", "Bastion", "Starter", "Alt", "CQC"],
     "ships" => {},
 };
 my $yaml_skills_raw = file_read('_skills.yaml');
@@ -26,21 +29,23 @@ if(defined $ARGV[0] && scalar(@ARGV) > 0){
     }
 } else {
     read_ships();               # <- ships/*.yaml
-    build_frontend_skillshow(); # -> frontend/src/Components/SkillDisplay.js
     build_skills_yaml();        # -> backend/data/skills.yaml
     build_categories_yaml();    # -> backend/data/categories.yaml
     build_fits_dat();           # -> backend/data/fits.dat
+    build_frontend_skillshow(); # -> frontend/src/Components/SkillDisplay.js
     check_all_yaml();
 }
 
 sub read_ships(){
+    say '===================================';
+    say '==  Load ship confis             ==';
+    say '===================================';
+    say '';
     opendir(my $dh, $pwd.'/ships') || die "Can't read dir: $!";
     while (readdir $dh) {
         next unless $_ =~ /\.yaml$/;
         
-        my $y = yaml_read($pwd.'/ships/'.$_);
-
-        next if $y->{active} == 0;
+        my $y = yaml_read('ships/'.$_);
 
         $y->{path} = 'ships/'.$_;
         $y->{file} = $_;
@@ -64,9 +69,18 @@ sub read_ships(){
             $fit->{fit_name} = fit_name($fit);
         }
 
+        # next if $y->{active} == 0;
+        if($y->{active} == 0){
+            printf("[ %20.20s ]: Skip\n", $y->{path});
+            next;
+        }
+
         $data->{ships}->{$y->{name}} = $y;
+        printf("[ %20.20s ]: Add\n", $y->{path});
     }
     closedir $dh;
+
+
 }
 
 sub check_all_yaml(){
@@ -117,6 +131,9 @@ sub check_all_yaml(){
 }
 
 sub build_frontend_skillshow(){
+
+    # это нужно на случай запуска скриптов чисто для пересборки yaml файлов с фитами
+    return unless(-e '../../frontend/src/Components/SkillDisplay.js');
     # Format:
     # {
     #     <CATEGORY_NAME> => [<SHIP_NAME>, ...],
@@ -143,11 +160,17 @@ sub build_frontend_skillshow(){
             $loc_html .= qq|<Button active={ship === "$sn"} onClick={(evt) => setShip("$sn")}>$sn</Button>\n|;
         }
 
-        $html .= qq|<InputGroup>\n$loc_html</InputGroup>\n|;
+        $html .= qq|<InputGroup>\n$loc_html</InputGroup>\n| if $loc_html ne '';
     }
 
-    # say $html;
-    # print Dumper($ship_by_cat);
+    # $html = qq|<InputGroup></InputGroup>| if $html eq '';
+    if($html eq ''){
+        say 'build_frontend_skillshow(): html block is empty';
+        say '------------------------------------------------';
+        say '$ship_by_cat : '.Dumper($ship_by_cat);
+        say '------------------------------------------------';
+        exit;
+    }
 
     # frontend/src/Components/SkillDisplay.js
     # <InputGroup> ... </InputGroup>
@@ -161,18 +184,14 @@ sub build_frontend_skillshow(){
 sub build_skills_yaml(){
     my $yaml_skills = Load($yaml_skills_raw);
 
-    # print Dumper($skills);
-
     # тут лежат корректно прописанные скили
     my @skills = ();
     
-
     foreach my $cname( keys %{$yaml_skills->{categories}} ){
         foreach my $sname( @{$yaml_skills->{categories}->{$cname}} ){
             push @skills, $sname;
         }
     }
-    # print Dumper(\@skills);
 
     # перебираем все корабли
     foreach my $shipname (keys %{$data->{ships}}){
@@ -217,23 +236,33 @@ sub build_skills_yaml(){
 
 
 sub build_fits_dat(){
+    say '===================================';
+    say '==  Fits data\Doctrine           ==';
+    say '===================================';
     my $doctrine = {};
     foreach my $shipname (keys %{$data->{ships}}){
         my $s = $data->{ships}->{$shipname};
 
         foreach my $fit(@{$s->{fits}}){
-            $doctrine->{$fit->{doctrine}}->{$shipname}=$fit;
+            unless(exists($doctrine->{$fit->{doctrine}}->{$shipname})){
+                $doctrine->{$fit->{doctrine}}->{$shipname} = [];
+            }
+            push @{$doctrine->{$fit->{doctrine}}->{$shipname}}, $fit;
         }
     }
 
     # print Dumper($doctrine);
 
-    open(my $fh, '>', 'fits.dat') || die "Can't open file: $!";
+    open(my $fh, '>', 'fits.dat') || die "Can't open file: 'fits.dat'\nMsg: $!\n";
     foreach my $dname(keys %$doctrine){
+        say "$dname : ";
         printf($fh qq|\n\n<font size="13" color="#ff00ff00">%s</font><font size="13" color="#ffff0000"><br></font><font size="13" color="#ffd98d00">\n|, $dname);
 
-        while(my ($sname, $f) = each (%{$doctrine->{$dname}})){
-            printf($fh qq|<a href="%s">%s</a><br>\n|, $f->{fit_dna}, $f->{fit_name});
+        while(my ($sname, $fits) = each (%{$doctrine->{$dname}})){
+            foreach my $f (@$fits){
+                say "\t".$f->{fit_name};
+                printf($fh qq|<a href="%s">%s</a><br>\n|, $f->{fit_dna}, $f->{fit_name});
+            }
         }
 
         print $fh qq|<br></font>\n|;
@@ -242,7 +271,7 @@ sub build_fits_dat(){
 }
 
 sub build_categories_yaml(){
-    open(my $fh, '>', 'categories.yaml') || die "Can't open file: $!";
+    open(my $fh, '>', 'categories.yaml') || die "Can't open file: 'categories.yaml'\nMsg: $!\n";
 
     say $fh 'categories:';
     foreach my $cat(@{$data->{categories}}){

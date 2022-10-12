@@ -5,8 +5,8 @@ category: Support
 fits:
   - name: Curse
     description: default Curse fit
-    doctrine: GOA
-    group: ""
+    doctrine: POCH
+    group: BASIC
     implants: ""
     fit_dna: "fitting:20125:1355;1:1236;1:2048;1:1447;1:35660;1:2281;1:31932;2:19267;1:19265;1:16505;2:12267;3:31724;1:31378;1:2488;10:21640;5:23705;5::"
 skills: |

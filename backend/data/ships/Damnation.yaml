@@ -6,7 +6,7 @@ fits:
   - name: Damnation-AAAS
     description: default Damnation fit
     doctrine: GAL
-    group: ""
+    group: "ELITE"
     implants: ""
     fit_dna: ""
 skills: |

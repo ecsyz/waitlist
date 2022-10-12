@@ -6,7 +6,7 @@ fits:
   - name: Guardian
     description: default guardian fit
     doctrine: GAL
-    group: ""
+    group: "ELITE"
     implants: ""
     fit_dna: "fitting:11987:18760;1:18768;1:18863;1:4403;1:11325;1:41191;1:12058;1:26914;4:16487;2:31366;2:2488;5:41155;2:29011;1::"
 skills: |

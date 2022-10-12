@@ -5,12 +5,13 @@ category: Support
 fits:
   - name: Lachesis
     description: default Lachesis fit
-    doctrine: GOA
-    group: ""
+    doctrine: POCH
+    group: BASIC
     implants: ""
     fit_dna: "fitting:11971:2048;1:1447;1:1236;1:1541;1:5975;1:3841;2:2301;1:2281;1:15891;1:448;1:24427;3:484;1:31378;1:31796;1:2488;5:23707;5:185;500::"
 skills: |
   Lachesis:
+    <<: [*generic_shield, *drone_dps]
     Gallente Cruiser:
       min: 5
     Recon Ships:

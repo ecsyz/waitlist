@@ -132,8 +132,6 @@ categories:
     - Large Disintegrator Specialization
   
 requirements:
-  _none: &none
-
   _generic: &generic
     Hull Upgrades:
       min: 5

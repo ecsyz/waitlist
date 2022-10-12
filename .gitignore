@@ -1,1 +1,4 @@
 frontend/package-lock.json
+backend/data/skills.yaml
+backend/data/fits.dat
+backend/data/categories.yaml

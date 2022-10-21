@@ -144,9 +144,6 @@ function Fitout({ data, tier }) {
     return (
       <>
         <div>
-          <div style={{ padding: "1em 0 0.4em" }}>
-            {tier in notes ? <Markdown>{notes[tier]}</Markdown> : <br />}
-          </div>
           {dps.length !== 0 && (
             <>
               <Title>DPS</Title>

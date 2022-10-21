@@ -36,20 +36,20 @@ function FitsDisplay({ tier, setTier = null }) {
               Starter
             </Button>
             <Button active={tier === "Basic"} onClick={(evt) => setTier("Basic")}>
-              Basic
+              POCH
             </Button>
-            <Button active={tier === "Advanced"} onClick={(evt) => setTier("Advanced")}>
+            {/* <Button active={tier === "Advanced"} onClick={(evt) => setTier("Advanced")}>
               Advanced
-            </Button>
+            </Button> */}
             <Button active={tier === "Elite"} onClick={(evt) => setTier("Elite")}>
-              Elite
+              APEX
             </Button>
           </InputGroup>
-          <InputGroup>
+          {/* <InputGroup>
             <Button active={tier === "Other"} onClick={(evt) => setTier("Other")}>
               Support
             </Button>
-          </InputGroup>
+          </InputGroup> */}
         </Buttons>
       )}
       <ImplantOut />

@@ -1,0 +1,44 @@
+categories:
+  - id: logi
+    name: Logi
+  - id: booster
+    name: Booster
+  - id: dps
+    name: DPS
+  - id: support
+    name: Support
+  - id: bastion
+    name: Bastion
+  - id: starter
+    name: Starter
+  - id: alt
+    name: Alt
+  - id: cqc
+    name: CQC
+
+rules:
+  - item: Guardian
+    category: logi
+  - item: Scimitar
+    category: logi
+  - item: Nestor
+    category: logi
+  - item: Lachesis
+    category: support
+  - item: Claymore
+    category: booster
+  - item: Eos
+    category: booster
+  - item: Paladin
+    category: bastion
+  - item: Leshak
+    category: dps
+  - item: Huginn
+    category: support
+  - item: Bhaalgorn
+    category: support
+  - item: Curse
+    category: support
+  - item: Ishtar
+    category: dps
+

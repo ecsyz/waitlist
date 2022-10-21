@@ -8,10 +8,10 @@ fits:
     doctrine: POCH
     group: BASIC
     implants: ""
-    fit_dna: "fitting:11978:1447;3:2048;1:35660;1:3841;2:2281;2:8641;2:8583;2:31378;1:31790;1:2488;5::"
+    fit_dna: "fitting:11978:2048;1:1447;3:3841;2:2281;2:35660;1:8583;2:8641;2:31790;1:31378;1:28201;4:2488;5:28668;200::"
 skills: |
   Scimitar:
-    <<: [*logi_shield]
+    <<: [*shield_cruiser, *drone]
     Afterburner:
       min: 4
     Logistics Cruisers:

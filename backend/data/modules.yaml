@@ -97,7 +97,9 @@ alternatives:
     - - Imperial Navy 1600mm Steel Plates
     - - Large Abyssal Armor Plates
   
-
+  - - - 50MN Quad LiF Restrained Microwarpdrive
+    - - 50MN Y-T8 Compact Microwarpdrive
+    - - 50MN Cold-Gas Enduring Microwarpdrive
 
 from_meta:
   # Automagically determine alternatives

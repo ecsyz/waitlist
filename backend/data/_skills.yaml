@@ -28,6 +28,11 @@ categories:
     - Large Pulse Laser Specialization
     - Large Hybrid Turret
     - Large Blaster Specialization
+    - Small Projectile Turret
+    - Medium Projectile Turret
+    - Medium Autocannon Specialization
+    - Light Missile Specialization
+    - Large Disintegrator Specialization
   Navigation:
     - Navigation
     - Spaceship Command
@@ -41,6 +46,7 @@ categories:
     - Armor Rigging
     - Armor Layering
     - Astronautics Rigging
+    - Shield Rigging
   Drones:
     - Drones
     - Gallente Drone Specialization
@@ -56,6 +62,7 @@ categories:
     - Medium Drone Operation
     - Heavy Drone Operation
     - Repair Drone Operation
+    - Sentry Drone Interfacing
   Engineering:
     - Thermodynamics
     - Capacitor Management
@@ -76,6 +83,10 @@ categories:
     - Remote Hull Repair Systems
     - Repair Systems
     - Shield Emission Systems
+    - Electronics Upgrades
+    - Target Painting
+    - Weapon Disruption
+    - Cloaking
   Targeting:
     - Target Management
     - Advanced Target Management
@@ -102,6 +113,10 @@ categories:
     - Marauders
     - Command Ships
     - Heavy Assault Cruisers
+    - Recon Ships
+    - Precursor Battleship
+    - Minmatar Cruiser
+    - Minmatar Battlecruiser
   Fleet Support:
     - Leadership
     - Wing Command
@@ -113,23 +128,8 @@ categories:
     - Skirmish Command Specialist
     - Information Command
     - Information Command Specialist
-  Unsort:
-    - Electronics Upgrades
-    - Target Painting
-    - Recon Ships
-    - Small Projectile Turret
-    - Medium Projectile Turret
-    - Medium Autocannon Specialization
-    - Electronics Upgrades
-    - Cloaking
-    - Minmatar Cruiser
-    - Minmatar Battlecruiser
     - Shield Command
-    - Light Missile Specialization
     - Shield Command Specialist
-    - Weapon Disruption
-    - Precursor Battleship
-    - Large Disintegrator Specialization
   
 requirements:
   _generic: &generic
@@ -173,25 +173,24 @@ requirements:
     Spaceship Command:
       elite: 5
     Nanite Interfacing:
+      min: 2
       elite: 4
     Nanite Operation:
-      elite: 4
-    Target Management:
-      min: 4
-      elite: 5
-    Long Range Targeting:
-      min: 3
-      elite: 5
-    Signature Analysis:
-      min: 3
-      elite: 5
-    Biology:
-      min: 3
-      elite: 5
-    Cybernetics:
       min: 2
-      elite: 5
-      priority: 5
+      elite: 4
+    # Target Management:
+    #   min: 4
+    #   elite: 5
+    # Long Range Targeting:
+    #   min: 3
+    #   elite: 5
+    # Signature Analysis:
+    #   min: 3
+    #   elite: 5
+    # Cybernetics:
+    #   min: 2
+    #   elite: 5
+    #   priority: 5
     Shield Management:
       elite: 4
     Shield Operation:
@@ -201,15 +200,9 @@ requirements:
     Armor Rigging:
       min: 3
       Elite: 4
-    Astronautics Rigging:
-      min: 3
-      Elite: 4
 
   _rigging_shield: &rigging_shield
     Shield Rigging:
-      min: 3
-      Elite: 4
-    Astronautics Rigging:
       min: 3
       Elite: 4
 
@@ -268,6 +261,14 @@ requirements:
       elite: 4
     Shield Operation:
       min: 4
+    Tactical Shield Manipulation:
+      min: 3
+      elite: 4
+    Shield Compensation:
+      min: 3
+      elite: 4
+    Shield Upgrades:
+      min: 4
     EM Shield Compensation :
       min: 3
       elite: 4
@@ -280,9 +281,17 @@ requirements:
     Thermal Shield Compensation:
       min: 3
       elite: 4
-    Tactical Shield Manipulation:
+
+  _shield_cruiser: &shield_cruiser
+    <<: [*generic, *rigging_shield]
+    Shield Management:
       min: 3
       elite: 4
+    Shield Operation:
+      min: 4
+    Tactical Shield Manipulation:
+      min: 4
+      elite: 5
     Shield Compensation:
       min: 3
       elite: 4
@@ -365,7 +374,7 @@ requirements:
     Shield Operation:
       elite: 4
 
-  _drone_dps: &drone_dps
+  _drone: &drone
     Drones:
       min: 5
     Drone Durability:
@@ -385,20 +394,22 @@ requirements:
     Drone Sharpshooting:
       min: 3
       elite: 4
-    Heavy Drone Operation:
-      min: 3
-      elite: 5
-    Gallente Drone Specialization:
-      elite: 4
-    Amarr Drone Specialization:
-      elite: 4
-    Sentry Drone Interfacing:
-      min: 1
-      elite: 3
     Light Drone Operation:
       min: 5
     Minmatar Drone Specialization:
       min: 1
+      elite: 4
+  
+  _drone_dps: &drone_dps
+    <<: [*drone]
+    Heavy Drone Operation:
+      min: 3
+      elite: 5
+    Gallente Drone Specialization:
+      min: 2
+      elite: 4
+    Amarr Drone Specialization:
+      min: 2
       elite: 4
 
   _logi_base: &logi_base
@@ -438,8 +449,10 @@ requirements:
       min: 3
       elite: 5
     Nanite Interfacing:
+      min: 2
       elite: 4
     Nanite Operation:
+      min: 2
       elite: 4
     Target Management:
       min: 5
@@ -448,7 +461,7 @@ requirements:
     Signature Analysis:
       min: 5
     Advanced Target Management:
-      min: 3
+      elite: 3
     Energy Grid Upgrades:
       min: 2
     Biology:

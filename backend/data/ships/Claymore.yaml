@@ -11,16 +11,16 @@ fits:
     fit_dna: "fitting:22468:2048;1:1236;2:2605;1:35660;1:2281;1:3841;2:19806;1:3504;1:2404;3:43555;3:43556;1:43896;2:21640;5:2488;5:27387;759:42694;900:42696;900:42695;900:42840;900:2613;600:28668;100:41155;1:29011;1:29009;1:42838;600:42839;600::"
 skills: |
   Claymore:
-    <<: [*generic_shield, *drone_dps, *booster]
+    <<: [*shield_cruiser, *drone_dps, *booster]
     Leadership:
       min: 5
     Minmatar Battlecruiser:
       min: 4
     Command Ships:
       min: 3
-    Light Missile Specialization:
-      min: 1
-      elite: 4
+    # Light Missile Specialization:
+    #   min: 1
+    #   elite: 4
     Shield Command:
       min: 5
     Shield Command Specialist:

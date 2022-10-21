@@ -11,7 +11,7 @@ fits:
     fit_dna: "fitting:11961:2048;1:1541;2:2605;1:3841;2:2281;1:19339;1:17559;1:31944;1:24427;2:23527;1:2913;1:28758;1:31790;2:2205;8:30488;24:28668;200:21896;1520::"
 skills: |
   Huginn:
-    <<: [*generic_shield, *drone_dps]
+    <<: [*generic_shield, *drone]
     Minmatar Cruiser:
       min: 5
     Recon Ships:

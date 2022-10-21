@@ -11,7 +11,7 @@ fits:
     fit_dna: ""
 skills: |
   Damnation:
-    <<: [*booster]
+    <<: [*booster, *drone]
     Leadership:
       min: 5
     Wing Command:

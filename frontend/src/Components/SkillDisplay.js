@@ -172,26 +172,26 @@ export function SkillDisplay({ characterId, ship, setShip = null, filterMin = fa
       {setShip != null && (
         <Buttons style={{ marginBottom: "1em" }}>
           <InputGroup>
-<Button active={ship === "Ishtar"} onClick={(evt) => setShip("Ishtar")}>Ishtar</Button>
-<Button active={ship === "Leshak"} onClick={(evt) => setShip("Leshak")}>Leshak</Button>
-</InputGroup>
-<InputGroup>
-<Button active={ship === "Nestor"} onClick={(evt) => setShip("Nestor")}>Nestor</Button>
-<Button active={ship === "Scimitar"} onClick={(evt) => setShip("Scimitar")}>Scimitar</Button>
 <Button active={ship === "Guardian"} onClick={(evt) => setShip("Guardian")}>Guardian</Button>
+<Button active={ship === "Scimitar"} onClick={(evt) => setShip("Scimitar")}>Scimitar</Button>
+<Button active={ship === "Nestor"} onClick={(evt) => setShip("Nestor")}>Nestor</Button>
 </InputGroup>
 <InputGroup>
-<Button active={ship === "Bhaalgorn"} onClick={(evt) => setShip("Bhaalgorn")}>Bhaalgorn</Button>
-<Button active={ship === "Lachesis"} onClick={(evt) => setShip("Lachesis")}>Lachesis</Button>
-<Button active={ship === "Huginn"} onClick={(evt) => setShip("Huginn")}>Huginn</Button>
-<Button active={ship === "Curse"} onClick={(evt) => setShip("Curse")}>Curse</Button>
+<Button active={ship === "Leshak"} onClick={(evt) => setShip("Leshak")}>Leshak</Button>
+<Button active={ship === "Ishtar"} onClick={(evt) => setShip("Ishtar")}>Ishtar</Button>
+</InputGroup>
+<InputGroup>
+<Button active={ship === "Paladin"} onClick={(evt) => setShip("Paladin")}>Paladin</Button>
 </InputGroup>
 <InputGroup>
 <Button active={ship === "Claymore"} onClick={(evt) => setShip("Claymore")}>Claymore</Button>
 <Button active={ship === "Eos"} onClick={(evt) => setShip("Eos")}>Eos</Button>
 </InputGroup>
 <InputGroup>
-<Button active={ship === "Paladin"} onClick={(evt) => setShip("Paladin")}>Paladin</Button>
+<Button active={ship === "Lachesis"} onClick={(evt) => setShip("Lachesis")}>Lachesis</Button>
+<Button active={ship === "Huginn"} onClick={(evt) => setShip("Huginn")}>Huginn</Button>
+<Button active={ship === "Bhaalgorn"} onClick={(evt) => setShip("Bhaalgorn")}>Bhaalgorn</Button>
+<Button active={ship === "Curse"} onClick={(evt) => setShip("Curse")}>Curse</Button>
 </InputGroup>
 
 

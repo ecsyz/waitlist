@@ -11,7 +11,7 @@ fits:
     fit_dna: ""
 skills: |
   Kronos:
-    <<: [*generic_armor, *gunnery, *side_effects]
+    <<: [*generic_armor, *gunnery, *side_effects, *drone_dps]
     Large Hybrid Turret:
       min: 5
     Large Blaster Specialization:

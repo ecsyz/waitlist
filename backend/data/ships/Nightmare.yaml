@@ -11,7 +11,7 @@ fits:
     fit_dna: ""
 skills: |
     Nightmare:
-    <<: [*generic_shield, *gunnery, *side_effects]
+    <<: [*generic_shield, *gunnery, *side_effects, *drone_dps]
     Amarr Battleship:
       min: 3
       elite: 4

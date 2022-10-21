@@ -11,7 +11,7 @@ fits:
     fit_dna: "fitting:33472:31900;2:18789;3:4403;1:19353;1:14174;1:41218;2:14140;1:14236;1:16449;6:41478;1:26298;3:2478;5:23707;5:2446;5:23705;5:2488;10:2436;5:41490;8:28668;64:41155;3:29011;3:29009;3::"
 skills: |
   Nestor:
-    <<: [*logi_armor, *rigging_armor]
+    <<: [*logi_armor, *rigging_armor, *drone_dps]
     EM Armor Compensation:
       min: 5
     Explosive Armor Compensation:

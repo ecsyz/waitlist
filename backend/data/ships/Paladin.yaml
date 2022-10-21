@@ -11,7 +11,7 @@ fits:
     fit_dna: "fitting:28659:15810;2:18789;2:2048;1:31900;2:35662;1:14172;1:1978;2:33400;1:14152;2:15963;1:3057;4:26302;2:23707;5:2488;10:41490;9:28999;4:12816;16:12820;12:23105;4:23113;4:28668;200:41155;2:29011;2:29009;2:29001;2::"
 skills: |
   Paladin:
-    <<: [*generic_armor, *gunnery, *side_effects]
+    <<: [*generic_armor, *gunnery, *side_effects, *drone_dps]
     Large Energy Turret:
       min: 5
     Large Pulse Laser Specialization:
@@ -30,9 +30,6 @@ skills: |
     Remote Armor Repair Systems:
       min: 3
       elite: 4
-    Remote Hull Repair Systems:
-      min: 3
-      gold: 4
     Micro Jump Drive Operation:
       min: 3
       elite: 4

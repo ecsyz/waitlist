@@ -8,18 +8,30 @@ fits:
     doctrine: POCH
     group: BASIC
     implants: ""
-    fit_dna: "fitting:12005:47257;1:4405;3:2605;1:1236;1:5975;1:3841;2:2281;1:24427;2:8787;1:31724;1:31790;1:2446;5:2195;5:28209;4:2488;5:28668;200:185;1100::"
+    fit_dna: "fitting:12005:47257;1:4405;3:2605;1:1236;1:5975;1:3841;2:2281;1:24427;2:8787;1:31724;1:31790;1:2446;5:2195;5:2488;5:31878;4:28668;200:185;1100::"
   - name: ISHTAR
     description: Ishtar with faction drones.
     doctrine: POCH
     group: STARTER
     implants: ""
-    fit_dna: "fitting:12005:47257;1:4405;3:2605;1:1236;1:5975;1:3841;2:2281;1:24427;2:8787;1:31724;1:31790;1:31888;5:31884;5:31870;5:31878;4:185;1100:28668;200::"
+    fit_dna: "fitting:12005:47257;1:4405;3:2605;1:1236;1:5975;1:3841;2:2281;1:24427;2:8787;1:31724;1:31790;1:2446;5:2195;5:28209;4:2488;5:28668;200:185;1100::"
 skills: |
   Ishtar:
-    <<: [*generic_shield, *rigging_shield, *drone_dps, *side_effects]
+    <<: [*shield_cruiser, *drone_dps]
     Heavy Assault Cruisers:
       min: 3
       elite: 4
     Gallente Cruiser:
       min: 5
+    Sentry Drone Interfacing:
+      min: 1
+      elite: 3
+    Shield Rigging:
+      Elite: 4
+    Cybernetics:
+      min: 1
+      elite: 5
+    Long Range Targeting:
+      min: 3
+    Advanced Drone Avionics:
+      min: 3

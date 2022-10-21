@@ -11,39 +11,39 @@ use serde::Serialize;
 #[derive(Debug)]
 pub struct Output {
     pub approved: bool,
-    pub tags: Vec<&'static str>,
+    pub tags:     Vec<&'static str>,
     pub category: String,
-    pub errors: Vec<String>,
+    pub errors:   Vec<String>,
 
     pub analysis: Option<PubAnalysis>,
 }
 
 #[derive(Debug, Serialize)]
 pub struct PubAnalysis {
-    name: String,
-    missing: BTreeMap<TypeID, i64>,
-    extra: BTreeMap<TypeID, i64>,
+    name:          String,
+    missing:       BTreeMap<TypeID, i64>,
+    extra:         BTreeMap<TypeID, i64>,
     cargo_missing: BTreeMap<TypeID, i64>,
-    downgraded: BTreeMap<TypeID, BTreeMap<TypeID, i64>>,
+    downgraded:    BTreeMap<TypeID, BTreeMap<TypeID, i64>>,
 }
 
 pub struct PilotData<'a> {
-    pub implants: &'a [TypeID],
+    pub implants:      &'a [TypeID],
     pub time_in_fleet: i64,
-    pub skills: &'a Skills,
-    pub access_keys: &'a BTreeSet<String>,
+    pub skills:        &'a Skills,
+    pub access_keys:   &'a BTreeSet<String>,
 }
 
 pub struct FitChecker<'a> {
-    approved: bool,
-    category: Option<String>,
-    badges: &'a Vec<String>,
-    fit: &'a Fitting,
+    approved:     bool,
+    category:     Option<String>,
+    badges:       &'a Vec<String>,
+    fit:          &'a Fitting,
     doctrine_fit: Option<&'static DoctrineFit>,
-    pilot: &'a PilotData<'a>,
+    pilot:        &'a PilotData<'a>,
 
-    tags: BTreeSet<&'static str>,
-    errors: Vec<String>,
+    tags:     BTreeSet<&'static str>,
+    errors:   Vec<String>,
     analysis: Option<PubAnalysis>,
 }
 
@@ -68,7 +68,6 @@ impl<'a> FitChecker<'a> {
         checker.check_skill_reqs()?;
         checker.check_module_skills()?;
         checker.check_fit();
-        checker.check_fit_reqs();
         checker.check_fit_implants_reqs();
         checker.check_logi_implants();
         checker.set_category();
@@ -168,72 +167,14 @@ impl<'a> FitChecker<'a> {
             }
 
             self.analysis = Some(PubAnalysis {
-                name: doctrine_fit.name.clone(),
-                missing: diff.module_missing,
-                extra: diff.module_extra,
-                downgraded: diff.module_downgraded,
+                name:          doctrine_fit.name.clone(),
+                missing:       diff.module_missing,
+                extra:         diff.module_extra,
+                downgraded:    diff.module_downgraded,
                 cargo_missing: diff.cargo_missing,
             });
         } else {
             self.approved = false;
-        }
-    }
-
-    fn check_fit_reqs(&mut self) {
-        let comp_reqs = match self.doctrine_fit {
-            Some(fit) => {
-                // The NM_Basic is an exception to our usual upgrade rules, in that, it has more tank fitted than the equivalent starter fit
-                // As such, it's allowed to X up with comps at 2 and not 4.
-                if fit.name.contains("STARTER") || fit.name.contains("NM_BASIC") {
-                    2
-                } else {
-                    4
-                }
-            }
-            None => 4,
-        };
-
-        let have_comps = min(
-            min(
-                self.pilot.skills.get(type_id!("EM Armor Compensation")),
-                self.pilot
-                    .skills
-                    .get(type_id!("Thermal Armor Compensation")),
-            ),
-            min(
-                self.pilot
-                    .skills
-                    .get(type_id!("Kinetic Armor Compensation")),
-                self.pilot
-                    .skills
-                    .get(type_id!("Explosive Armor Compensation")),
-            ),
-        );
-
-        if have_comps < comp_reqs {
-            self.errors.push(format!(
-                "Missing Armor Compensation skills: level {} required",
-                comp_reqs
-            ));
-        }
-
-        if self
-            .fit
-            .modules
-            .get(&type_id!("Bastion Module I"))
-            .copied()
-            .unwrap_or(0)
-            > 0
-        {
-            if self.pilot.skills.get(type_id!("Hull Upgrades")) < 5 {
-                self.errors
-                    .push("Missing tank skill: Hull Upgrades 5 required".to_string());
-            }
-
-            if self.pilot.skills.get(type_id!("Mechanics")) < 4 {
-                self.errors
-                    .push("Missing tank skill: Mechanics 4 required".to_string());
-            }
         }
     }
 
@@ -336,8 +277,7 @@ impl<'a> FitChecker<'a> {
             self.tags.insert("HQ-FC");
         } else if self.pilot.access_keys.contains("waitlist-tag:TRAINEE") {
             self.tags.insert("TRAINEE");
-        }
-        else {
+        } else {
             // To save space on the XUP card,
             // don't show these badges for FCs
             if self.fit.hull == type_id!("Nestor") {
@@ -348,11 +288,12 @@ impl<'a> FitChecker<'a> {
                     self.tags.insert("RETIRED-LOGI");
                 }
             }
-    
-            if self.fit.hull == type_id!("Vindicator") && self.badges.contains(&String::from("WEB")) {
+
+            if self.fit.hull == type_id!("Vindicator") && self.badges.contains(&String::from("WEB"))
+            {
                 self.tags.insert("WEB-SPECIALIST");
             }
-    
+
             if (self.fit.hull == type_id!("Kronos") || self.fit.hull == type_id!("Paladin"))
                 && self.badges.contains(&String::from("BASTION"))
             {
@@ -406,8 +347,8 @@ impl<'a> FitChecker<'a> {
     fn finish(self) -> Result<Output, FitError> {
         Ok(Output {
             approved: self.approved,
-            tags: self.tags.into_iter().collect(),
-            errors: self.errors,
+            tags:     self.tags.into_iter().collect(),
+            errors:   self.errors,
             category: self.category.expect("Category not assigned"),
             analysis: self.analysis,
         })
